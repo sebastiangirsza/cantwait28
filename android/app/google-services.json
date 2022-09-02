@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "208190434013",
+    "project_id": "cantwaitnetflix304",
+    "storage_bucket": "cantwaitnetflix304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208190434013:android:4ba1091e94f259c76d4934",
+        "android_client_info": {
+          "package_name": "com.sebastiangirsza.cantwait28"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208190434013-67su914qnuhn13s7jdsa71pgaeodjkjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS0gjVL7lGGPzyCkANYkfPc3vMx5Yg8jY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208190434013-67su914qnuhn13s7jdsa71pgaeodjkjc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
