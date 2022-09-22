@@ -8,7 +8,7 @@ part 'add_state.dart';
 class AddCubit extends Cubit<AddState> {
   AddCubit(this._itemsRpository) : super(const AddState());
 
-  final ItemsRpository _itemsRpository;
+  final ItemsRepository _itemsRpository;
 
   Future<void> add(
     String title,

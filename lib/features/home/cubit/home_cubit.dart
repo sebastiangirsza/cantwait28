@@ -9,12 +9,12 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._itemsRpository) : super(const HomeState());
 
-  final ItemsRpository _itemsRpository;
+  final ItemsRepository _itemsRpository;
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    _streamSubscription = _itemsRpository.getItemsStream().listen(
+    _streamSubscription = _itemsRpository.getItemStream().listen(
       (items) {
         emit(HomeState(items: items));
       },

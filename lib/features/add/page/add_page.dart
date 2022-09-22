@@ -1,3 +1,5 @@
+import 'package:cantwait28/data/remote_data_sources/items_remote_data_source.dart';
+import 'package:cantwait28/data/remote_data_sources/user_remote_data_source.dart';
 import 'package:cantwait28/features/add/cubit/add_cubit.dart';
 import 'package:cantwait28/repositories/items_repository.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,8 @@ class _AddPageState extends State<AddPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCubit(ItemsRpository()),
+      create: (context) => AddCubit(
+          ItemsRepository(ItemsRemoteDataSource(), UserRemoteDataSource())),
       child: BlocListener<AddCubit, AddState>(
         listener: (context, state) {
           if (state.saved) {

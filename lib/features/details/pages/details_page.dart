@@ -1,3 +1,5 @@
+import 'package:cantwait28/data/remote_data_sources/items_remote_data_source.dart';
+import 'package:cantwait28/data/remote_data_sources/user_remote_data_source.dart';
 import 'package:cantwait28/features/details/cubit/details_cubit.dart';
 import 'package:cantwait28/models/item_model.dart';
 import 'package:cantwait28/repositories/items_repository.dart';
@@ -19,7 +21,9 @@ class DetailsPage extends StatelessWidget {
         title: const Text('Can\'t Wait 🤩'),
       ),
       body: BlocProvider(
-        create: (context) => DetailsCubit(ItemsRpository())..getItemWithID(id),
+        create: (context) => DetailsCubit(
+            ItemsRepository(ItemsRemoteDataSource(), UserRemoteDataSource()))
+          ..getItemWithID(id),
         child: BlocBuilder<DetailsCubit, DetailsState>(
           builder: (context, state) {
             final itemModel = state.itemModel;

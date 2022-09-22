@@ -8,7 +8,7 @@ part 'details_state.dart';
 class DetailsCubit extends Cubit<DetailsState> {
   DetailsCubit(this._itemsRpository) : super(DetailsState(itemModel: null));
 
-  final ItemsRpository _itemsRpository;
+  final ItemsRepository _itemsRpository;
 
   Future<void> getItemWithID(String id) async {
     final itemModel = await _itemsRpository.get(id: id);

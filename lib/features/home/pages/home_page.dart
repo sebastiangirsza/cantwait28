@@ -1,3 +1,5 @@
+import 'package:cantwait28/data/remote_data_sources/items_remote_data_source.dart';
+import 'package:cantwait28/data/remote_data_sources/user_remote_data_source.dart';
 import 'package:cantwait28/features/add/page/add_page.dart';
 import 'package:cantwait28/features/add/page/user_profile.dart';
 import 'package:cantwait28/features/details/pages/details_page.dart';
@@ -54,7 +56,9 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(ItemsRpository())..start(),
+      create: (context) => HomeCubit(
+          ItemsRepository(ItemsRemoteDataSource(), UserRemoteDataSource()))
+        ..start(),
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           final itemModels = state.items;
