@@ -4,9 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ItemsRemoteDataSource {
   Stream<QuerySnapshot<Map<String, dynamic>>> getItemStream() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('Użytkownik nie jest zalogowany');
-    }
     return FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
@@ -17,9 +14,7 @@ class ItemsRemoteDataSource {
 
   Future<void> delete({required String id}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('Użytkownik nie jest zalogowany');
-    }
+
     return FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
@@ -31,9 +26,7 @@ class ItemsRemoteDataSource {
   Future<DocumentSnapshot<Map<String, dynamic>>> get(
       {required String id}) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('Użytkownik nie jest zalogowany');
-    }
+
     return FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
@@ -48,9 +41,7 @@ class ItemsRemoteDataSource {
     DateTime releaseDate,
   ) async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      throw Exception('Użytkownik nie jest zalogowany');
-    }
+
     await FirebaseFirestore.instance
         .collection('users')
         .doc(userID)
