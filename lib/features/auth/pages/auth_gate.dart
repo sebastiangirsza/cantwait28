@@ -1,6 +1,9 @@
+import 'package:cantwait28/data/remote_data_sources/user_remote_data_source.dart';
+import 'package:cantwait28/features/auth/cubit/auth_gate_cubit.dart';
 import 'package:cantwait28/features/home/pages/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cantwait28/repositories/Firebase_auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
 
 class AuthGate extends StatelessWidget {
@@ -8,21 +11,21 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      // If the user is already signed-in, use it as initial data
-      initialData: FirebaseAuth.instance.currentUser,
-      builder: (context, snapshot) {
-        // User is not signed in
-        if (!snapshot.hasData) {
-          return const SignInScreen(providerConfigs: [
-            EmailProviderConfiguration(),
-          ]);
-        }
-
-        // Render your application if authenticated
-        return const HomePage();
-      },
+    return BlocProvider(
+      create: (context) =>
+          AuthGateCubit(FirebaseAuthRespository(UserRemoteDataSource()))
+            ..start(),
+      child: BlocBuilder<AuthGateCubit, AuthGateState>(
+        builder: (context, state) {
+          final user = state.user;
+          if (user == null) {
+            return const SignInScreen(providerConfigs: [
+              EmailProviderConfiguration(),
+            ]);
+          }
+          return const HomePage();
+        },
+      ),
     );
   }
 }
