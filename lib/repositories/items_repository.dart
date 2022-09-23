@@ -7,7 +7,7 @@ class ItemsRepository {
   final ItemsRemoteDataSource _itemsRemoteDataSource;
   final UserRemoteDataSource _userRemoteDataSource;
   Stream<List<ItemModel>> getItemStream() {
-    final userID = _userRemoteDataSource.getUser();
+    final userID = _userRemoteDataSource.getUserID();
     if (userID == null) {
       throw Exception('Użytkownik nie jest zalogowany');
     }
@@ -19,7 +19,7 @@ class ItemsRepository {
   }
 
   Future<void> delete({required String id}) async {
-    final userID = _userRemoteDataSource.getUser();
+    final userID = _userRemoteDataSource.getUserID();
     if (userID == null) {
       throw Exception('Użytkownik nie jest zalogowany');
     }
@@ -27,7 +27,7 @@ class ItemsRepository {
   }
 
   Future<ItemModel> get({required String id}) async {
-    final userID = _userRemoteDataSource.getUser();
+    final userID = _userRemoteDataSource.getUserID();
     if (userID == null) {
       throw Exception('Użytkownik nie jest zalogowany');
     }
@@ -40,7 +40,7 @@ class ItemsRepository {
     String imageURL,
     DateTime releaseDate,
   ) async {
-    final userID = _userRemoteDataSource.getUser();
+    final userID = _userRemoteDataSource.getUserID();
     if (userID == null) {
       throw Exception('Użytkownik nie jest zalogowany');
     }

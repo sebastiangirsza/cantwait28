@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserRemoteDataSource {
-  String? getUser({userID}) {
+  String? getUserID({userID}) {
     return FirebaseAuth.instance.currentUser?.uid;
   }
 
