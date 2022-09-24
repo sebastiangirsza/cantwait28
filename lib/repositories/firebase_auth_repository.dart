@@ -1,15 +1,11 @@
 import 'package:cantwait28/data/remote_data_sources/user_remote_data_source.dart';
 import 'package:cantwait28/models/user_model.dart';
-import 'package:cantwait28/repositories/user_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthRespository implements AuthProvider {
-  FirebaseAuth getInstance = FirebaseAuth.instance;
+class FirebaseAuthRespository {
   FirebaseAuthRespository(this._userRemoteDataSource);
   final UserRemoteDataSource _userRemoteDataSource;
 
-  @override
-  UserModel? get currentUser {
+  Future<UserModel?> currentUser() async {
     final user = _userRemoteDataSource.currentUser();
     if (user != null) {
       return UserModel.fromFirebase(user);
@@ -17,4 +13,9 @@ class FirebaseAuthRespository implements AuthProvider {
       return null;
     }
   }
+
+  Stream<UserModel?> userModelStream() => _userRemoteDataSource
+      .getInstance()
+      .authStateChanges()
+      .map((user) => (user != null) ? UserModel.fromFirebase(user) : null);
 }

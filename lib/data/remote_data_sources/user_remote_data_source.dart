@@ -8,4 +8,8 @@ class UserRemoteDataSource {
   User? currentUser() {
     return FirebaseAuth.instance.currentUser;
   }
+
+  FirebaseAuth getInstance() {
+    return FirebaseAuth.instance;
+  }
 }

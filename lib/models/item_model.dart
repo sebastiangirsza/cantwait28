@@ -17,7 +17,7 @@ class ItemModel {
       : id = json.id,
         title = json['title'],
         imageURL = json['image_url'],
-        releaseDate = (json['release_date'] as Timestamp).toDate();
+        releaseDate = json['release_date'].toDate();
 
   String daysLeft() {
     return releaseDate.difference(DateTime.now()).inDays.toString();

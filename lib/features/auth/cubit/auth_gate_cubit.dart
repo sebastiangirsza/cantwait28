@@ -22,14 +22,12 @@ class AuthGateCubit extends Cubit<AuthGateState> {
         user: null,
       ),
     );
-    _streamSubscription =
-        _firebaseAuthRespository.getInstance.authStateChanges().listen(
+    _streamSubscription = _firebaseAuthRespository.userModelStream().listen(
       (user) {
         if (user != null) {
-          final userModel = UserModel.fromFirebase(user);
           emit(
             AuthGateState(
-              user: userModel,
+              user: user,
             ),
           );
         } else {
@@ -41,11 +39,11 @@ class AuthGateCubit extends Cubit<AuthGateState> {
         }
       },
     )..onError((error) {
-            emit(
-              const AuthGateState(
-                user: null,
-              ),
-            );
-          });
+        emit(
+          const AuthGateState(
+            user: null,
+          ),
+        );
+      });
   }
 }
